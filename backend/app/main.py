@@ -14,7 +14,8 @@ from app.api.routes import (
     achievements,
     resumes,
     contact,
-    contact_messages
+    contact_messages,
+    visits
 )
 from app.db.database import (
     connect_to_mongodb,
@@ -83,3 +84,4 @@ app.include_router(achievements.router)
 app.include_router(resumes.router)
 app.include_router(contact.router)
 app.include_router(contact_messages.router)
+app.include_router(visits.router)
