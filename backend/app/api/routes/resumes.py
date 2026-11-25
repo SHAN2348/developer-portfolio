@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, status, UploadFile, File,
 from app.core.dependencies import get_current_admin
 from app.schemas.resume import ResumeCreate, ResumeUpdate
 from app.services import resume_service
-from app.services.cloudinary_service import upload_certificate_pdf, delete_certificate_pdf
+from app.services.cloudinary_service import upload_pdf, delete_pdf
 
 router = APIRouter(prefix="/api/resumes", tags=["Resumes"])
 
@@ -40,7 +40,10 @@ async def upload_new_resume(
     )
 
     try:
-        uploaded_pdf = await upload_certificate_pdf(file)
+        uploaded_pdf = await upload_pdf(
+            file,
+            folder="developer-portfolio/resumes"
+        )
     except ValueError as error:
         raise HTTPException(status_code=400, detail=str(error))
 
@@ -51,7 +54,7 @@ async def upload_new_resume(
     })
 
     if created_resume is None:
-        await delete_certificate_pdf(uploaded_pdf["public_id"])
+        await delete_pdf(uploaded_pdf["public_id"])
         raise HTTPException(
             status_code=404,
             detail="Resume section not found. Create it first."
@@ -102,7 +105,10 @@ async def replace_resume_pdf(
         raise HTTPException(status_code=404, detail="Resume not found.")
 
     try:
-        uploaded_pdf = await upload_certificate_pdf(file)
+        uploaded_pdf = await upload_pdf(
+            file,
+            folder="developer-portfolio/resumes"
+        )
     except ValueError as error:
         raise HTTPException(status_code=400, detail=str(error))
 
@@ -112,7 +118,7 @@ async def replace_resume_pdf(
     )
 
     if not updated:
-        await delete_certificate_pdf(uploaded_pdf["public_id"])
+        await delete_pdf(uploaded_pdf["public_id"])
         raise HTTPException(
             status_code=500,
             detail="Failed to update resume PDF."
@@ -122,7 +128,7 @@ async def replace_resume_pdf(
 
     if old_public_id:
         try:
-            await delete_certificate_pdf(old_public_id)
+            await delete_pdf(old_public_id)
         except Exception:
             pass
 
@@ -153,7 +159,7 @@ async def delete_existing_resume(
 
     if public_id:
         try:
-            await delete_certificate_pdf(public_id)
+            await delete_pdf(public_id)
         except Exception:
             pass
 

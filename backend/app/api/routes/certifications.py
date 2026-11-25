@@ -95,8 +95,9 @@ async def create_new_certification(
         )
 
     try:
-        uploaded_file = await cloudinary_service.upload_certificate_pdf(
-            file
+        uploaded_file = await cloudinary_service.upload_pdf(
+            file,
+            folder="developer-portfolio/certificates"
         )
 
         certification_data_dict = certification_data.model_dump()
@@ -111,7 +112,7 @@ async def create_new_certification(
         )
 
         if created_certification is None:
-            await cloudinary_service.delete_certificate_pdf(
+            await cloudinary_service.delete_pdf(
                 uploaded_file["public_id"]
             )
 
@@ -212,7 +213,10 @@ async def replace_existing_certification_pdf(
 
     try:
         uploaded_file = (
-            await cloudinary_service.upload_certificate_pdf(file)
+            await cloudinary_service.upload_pdf(
+                    file,
+                    folder="developer-portfolio/certificates"
+                )
         )
 
         updated = await certification_service.replace_certification_pdf(
@@ -234,7 +238,7 @@ async def replace_existing_certification_pdf(
 
         if old_public_id:
             try:
-                await cloudinary_service.delete_certificate_pdf(
+                await cloudinary_service.delete_pdf(
                     old_public_id
                 )
             except Exception:
@@ -251,14 +255,14 @@ async def replace_existing_certification_pdf(
 
     except HTTPException:
         if uploaded_file and not database_updated:
-            await cloudinary_service.delete_certificate_pdf(
+            await cloudinary_service.delete_pdf(
                 uploaded_file["public_id"]
             )
         raise
 
     except ValueError as error:
         if uploaded_file and not database_updated:
-            await cloudinary_service.delete_certificate_pdf(
+            await cloudinary_service.delete_pdf(
                 uploaded_file["public_id"]
             )
 
@@ -269,7 +273,7 @@ async def replace_existing_certification_pdf(
 
     except Exception:
         if uploaded_file and not database_updated:
-            await cloudinary_service.delete_certificate_pdf(
+            await cloudinary_service.delete_pdf(
                 uploaded_file["public_id"]
             )
 
@@ -316,7 +320,7 @@ async def delete_existing_certification(
 
     if public_id:
         try:
-            await cloudinary_service.delete_certificate_pdf(
+            await cloudinary_service.delete_pdf(
                 public_id
             )
         except Exception:

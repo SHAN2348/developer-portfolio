@@ -1,15 +1,15 @@
-
 import cloudinary.uploader
-from starlette.concurrency import run_in_threadpool
-from app.core import cloudinary_config
-from io import BytesIO
 
+from io import BytesIO
+from starlette.concurrency import run_in_threadpool
+
+from app.core import cloudinary_config
 
 
 MAX_FILE_SIZE = 10 * 1024 * 1024  # 10 MB
 
 
-async def upload_certificate_pdf(file):
+async def upload_pdf(file, folder: str):
     file_content = await file.read(MAX_FILE_SIZE + 1)
 
     if not file_content:
@@ -22,17 +22,17 @@ async def upload_certificate_pdf(file):
         raise ValueError("Only valid PDF files are allowed.")
 
     pdf_file = BytesIO(file_content)
-    pdf_file.name = file.filename or "certificate.pdf"
+    pdf_file.name = file.filename or "document.pdf"
 
     result = await run_in_threadpool(
-            cloudinary.uploader.upload,
-            pdf_file,
-            resource_type="raw",
-            folder="developer-portfolio/certificates",
-            use_filename=True,
-            unique_filename=True,
-            overwrite=False
-        )
+        cloudinary.uploader.upload,
+        pdf_file,
+        resource_type="raw",
+        folder=folder,
+        use_filename=True,
+        unique_filename=True,
+        overwrite=False
+    )
 
     return {
         "public_id": result["public_id"],
@@ -40,7 +40,8 @@ async def upload_certificate_pdf(file):
         "format": result.get("format")
     }
 
-async def delete_certificate_pdf(public_id: str):
+
+async def delete_pdf(public_id: str):
     result = await run_in_threadpool(
         cloudinary.uploader.destroy,
         public_id,
