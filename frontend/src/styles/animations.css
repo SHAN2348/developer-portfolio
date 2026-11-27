@@ -1,0 +1,20 @@
+/* Sections start hidden and slide up when they enter the screen */
+.reveal {
+  opacity: 0;
+  transform: translateY(48px);
+  transition: opacity 1.4s cubic-bezier(0.22, 1, 0.36, 1), transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Visitors who prefer less motion see the sections immediately */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
