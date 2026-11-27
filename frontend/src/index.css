@@ -55,12 +55,88 @@ a:hover {
 }
 
 /* Reusable glass panel. Any component can use className="glass-panel". */
+/* 3D glass panel: raised look, light top edge, lift on hover. Applies to every panel. */
 .glass-panel {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
+  position: relative;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.72),
+    rgba(255, 255, 255, 0.42)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.9);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border-radius: var(--radius-lg);
-  box-shadow: var(--glass-shadow);
   padding: 2rem;
+  /* Layered shadows: a close dark shadow plus a wide soft one create depth */
+  box-shadow:
+    0 2px 4px rgba(15, 43, 56, 0.06),
+    0 12px 24px rgba(15, 43, 56, 0.1),
+    0 32px 60px rgba(15, 43, 56, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -1px 0 rgba(14, 127, 163, 0.12);
+  transition:
+    transform var(--transition-speed),
+    box-shadow var(--transition-speed);
+}
+
+.glass-panel:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 4px 8px rgba(15, 43, 56, 0.08),
+    0 18px 36px rgba(15, 43, 56, 0.14),
+    0 40px 80px rgba(15, 43, 56, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 0 rgba(14, 127, 163, 0.18);
+}
+
+/* Floating depth orbs behind the glass, so the blur has something to show */
+.depth-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.55;
+  z-index: -1;
+  pointer-events: none;
+  animation: floatOrb 18s ease-in-out infinite;
+}
+
+.depth-orb-one {
+  width: 340px;
+  height: 340px;
+  top: -80px;
+  left: -60px;
+  background: #7dd3fc;
+}
+
+.depth-orb-two {
+  width: 420px;
+  height: 420px;
+  bottom: -120px;
+  right: -100px;
+  background: #5eead4;
+  animation-delay: -6s;
+}
+
+.depth-orb-three {
+  width: 260px;
+  height: 260px;
+  top: 40%;
+  left: 55%;
+  background: #bae6fd;
+  animation-delay: -12s;
+}
+
+@keyframes floatOrb {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(30px, -40px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .depth-orb {
+    animation: none;
+  }
+  .glass-panel:hover {
+    transform: none;
+  }
 }

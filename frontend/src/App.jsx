@@ -4,10 +4,12 @@ import PortfolioPage from "./pages/PortfolioPage";
 import AdminLoginPage from "./pages/AdminLoginPage";
 import AdminDashboardPage from "./pages/AdminDashboardPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import DepthBackground from "./components/common/DepthBackground";
 
 function App() {
   return (
     <BrowserRouter>
+      <DepthBackground />
       <Routes>
         <Route path="/" element={<WelcomePage />} />
         <Route path="/portfolio" element={<PortfolioPage />} />
