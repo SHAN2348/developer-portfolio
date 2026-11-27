@@ -1,23 +1,23 @@
 :root {
-  /* Colors */
-  --color-bg-start: #03131f;
-  --color-bg-end: #071f2e;
-  --color-accent: #22d3ee;        /* Cyan */
-  --color-accent-soft: #67e8f9;
-  --color-accent-dim: rgba(34, 211, 238, 0.15);
-  --color-text: #e6f7fb;
-  --color-text-muted: #8fb3c0;
+  /* Colors: light sky-blue theme */
+  --color-bg-start: #eaf6fb;
+  --color-bg-end: #cfe9f5;
+  --color-accent: #0e7fa3;          /* Deeper cyan, readable on light backgrounds */
+  --color-accent-soft: #14a3c9;
+  --color-accent-dim: rgba(14, 127, 163, 0.12);
+  --color-text: #0f2b38;
+  --color-text-muted: #2e5566;
 
-  /* Glass panel */
-  --glass-bg: rgba(255, 255, 255, 0.06);
-  --glass-border: rgba(103, 232, 249, 0.25);
-  --glass-blur: blur(14px);
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  /* Glass panel: frosted white with a thin highlight */
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.85);
+  --glass-blur: blur(12px);
+  --glass-shadow: 0 10px 30px rgba(15, 43, 56, 0.08);
 
   /* Spacing and shape */
-  --radius-md: 14px;
-  --radius-lg: 22px;
-  --transition-speed: 0.3s ease;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --transition-speed: 0.25s ease;
 }
 
 * {
@@ -35,19 +35,23 @@ body,
 body {
   font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
   color: var(--color-text);
-  background: linear-gradient(135deg, var(--color-bg-start), var(--color-bg-end));
+  /* Two soft light patches over the base gradient, so the background isn't one flat blend */
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.7), transparent 40%),
+    radial-gradient(circle at 85% 80%, rgba(125, 211, 252, 0.45), transparent 45%),
+    linear-gradient(160deg, var(--color-bg-start), var(--color-bg-end));
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
 }
 
 a {
-  color: var(--color-accent-soft);
+  color: var(--color-accent);
   text-decoration: none;
   transition: color var(--transition-speed);
 }
 
 a:hover {
-  color: var(--color-accent);
+  color: var(--color-accent-soft);
 }
 
 /* Reusable glass panel. Any component can use className="glass-panel". */

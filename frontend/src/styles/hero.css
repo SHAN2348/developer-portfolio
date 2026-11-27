@@ -1,0 +1,45 @@
+.hero {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+}
+
+.hero-card {
+  max-width: 640px;
+  width: 100%;
+  text-align: center;
+  animation: fadeInUp 0.8s ease both;
+}
+
+.hero-greeting {
+  color: var(--color-accent-soft);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+
+.hero-name {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 0.5rem;
+}
+
+.hero-role {
+  color: var(--color-accent);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.hero-summary {
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin-bottom: 1.75rem;
+}
+
+.hero-cta {
+  display: inline-block;
+  text-decoration: none;
+  width: auto;
+  padding: 0.85rem 1.75rem;
+}

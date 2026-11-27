@@ -1,0 +1,113 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.navbar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.9rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.navbar-brand {
+  color: var(--color-accent-soft);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.navbar-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  padding: 0.4rem 0.9rem;
+  cursor: pointer;
+}
+
+.navbar-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+}
+
+.navbar-links a {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.navbar-links a:hover {
+  color: var(--color-accent);
+}
+
+/* Mobile: hide links behind the menu button */
+@media (max-width: 768px) {
+  .navbar-toggle {
+    display: block;
+  }
+
+  .navbar-links {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-top: 0.5rem;
+  }
+
+  .navbar-links-open {
+    display: flex;
+  }
+}
+
+/* Modern pill-style navigation */
+.navbar-links a {
+  padding: 0.45rem 0.95rem;
+  border: 1px solid var(--glass-border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--color-text-muted);
+  font-size: 0.88rem;
+  transition:
+    background var(--transition-speed),
+    color var(--transition-speed),
+    box-shadow var(--transition-speed),
+    transform var(--transition-speed);
+}
+
+.navbar-links a:hover {
+  background: var(--color-accent-dim);
+  color: var(--color-accent-soft);
+  box-shadow: 0 0 14px rgba(34, 211, 238, 0.35);
+  transform: translateY(-1px);
+}
+
+.navbar-toggle {
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  transition: background var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.navbar-toggle:hover {
+  background: var(--color-accent-dim);
+  box-shadow: 0 0 14px rgba(34, 211, 238, 0.35);
+}
+
+.navbar-links {
+  gap: 0.6rem;
+  justify-content: flex-end;
+}
+
+.navbar-brand {
+  letter-spacing: 0.02em;
+}
