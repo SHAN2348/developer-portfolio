@@ -17,3 +17,17 @@ export async function getProjects() {
   const response = await api.get("/projects/");
   return response.data.projects;
 }
+
+
+// Fetch all skills from the public API.
+export async function getSkills() {
+  const response = await api.get("/skills/");
+  return response.data.skills;
+}
+
+
+// Fetch all education records from the public API.
+export async function getEducation() {
+  const response = await api.get("/education/");
+  return response.data.education;
+}

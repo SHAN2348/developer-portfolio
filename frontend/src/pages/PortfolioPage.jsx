@@ -5,10 +5,14 @@ import RevealOnScroll from "../components/common/RevealOnScroll";
 import HeroSection from "../sections/HeroSection";
 import AboutSection from "../sections/AboutSection";
 import ProjectsSection from "../sections/ProjectsSection";
+import SkillsSection from "../sections/SkillsSection";
+import EducationSection from "../sections/EducationSection";
 import {
   getPublishedSections,
   findSectionByType,
   getProjects,
+  getSkills,
+  getEducation,
 } from "../services/portfolioService";
 
 function PortfolioPage() {
@@ -16,6 +20,8 @@ function PortfolioPage() {
   const [visitorName] = useState(() => sessionStorage.getItem("visitorName") || "");
   const [sections, setSections] = useState([]);
   const [projects, setProjects] = useState([]);
+  const [skills, setSkills] = useState([]);
+  const [education, setEducation] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,17 +34,27 @@ function PortfolioPage() {
   useEffect(() => {
     async function loadPortfolioData() {
       try {
-        const sectionData = await getPublishedSections();
-        setSections(sectionData);
+        setSections(await getPublishedSections());
       } catch (error) {
         console.error("Could not load portfolio sections:", error);
       }
 
       try {
-        const projectData = await getProjects();
-        setProjects(projectData);
+        setProjects(await getProjects());
       } catch (error) {
         console.error("Could not load projects:", error);
+      }
+
+      try {
+        setSkills(await getSkills());
+      } catch (error) {
+        console.error("Could not load skills:", error);
+      }
+
+      try {
+        setEducation(await getEducation());
+      } catch (error) {
+        console.error("Could not load education:", error);
       }
     }
 
@@ -59,6 +75,14 @@ function PortfolioPage() {
 
         <RevealOnScroll>
           <ProjectsSection projects={projects} />
+        </RevealOnScroll>
+
+        <RevealOnScroll>
+          <SkillsSection skills={skills} />
+        </RevealOnScroll>
+
+        <RevealOnScroll>
+          <EducationSection education={education} />
         </RevealOnScroll>
       </main>
     </div>

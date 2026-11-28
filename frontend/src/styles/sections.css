@@ -96,3 +96,187 @@
   gap: 1rem;
   font-weight: 600;
 }
+
+/* Project action buttons: clearly clickable, Live demo is primary */
+.project-card .project-links {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-top: 0.5rem;
+}
+
+.project-card .project-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.7rem 1.25rem;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--color-accent);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--color-accent);
+  background: transparent;
+  box-shadow: 0 4px 12px rgba(14, 127, 163, 0.15);
+  transition:
+    transform var(--transition-speed),
+    background var(--transition-speed),
+    color var(--transition-speed),
+    box-shadow var(--transition-speed);
+}
+
+/* First link (Live demo) is the primary, filled button */
+.project-card .project-links a:first-child {
+  background: var(--color-accent);
+  color: #ffffff;
+  box-shadow: 0 6px 16px rgba(14, 127, 163, 0.35);
+}
+
+.project-card .project-links a:hover {
+  transform: translateY(-3px);
+  background: var(--color-accent-soft);
+  border-color: var(--color-accent-soft);
+  color: #ffffff;
+  box-shadow: 0 10px 22px rgba(14, 127, 163, 0.4);
+}
+
+.project-card .project-links a:active {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card .project-links a:hover {
+    transform: none;
+  }
+}
+
+
+.skills-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.skills-category {
+  font-size: 1rem;
+  color: var(--color-accent);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.skills-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.skill-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(14, 127, 163, 0.25);
+  box-shadow: 0 4px 10px rgba(15, 43, 56, 0.06);
+  color: var(--color-text);
+  font-weight: 600;
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.skill-chip:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(14, 127, 163, 0.2);
+}
+
+.skill-level {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: var(--color-accent-dim);
+  color: var(--color-accent);
+}
+
+/* Timeline for education entries */
+.timeline {
+  list-style: none;
+  position: relative;
+  padding-left: 1.75rem;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--color-accent), var(--color-accent-soft));
+  border-radius: 999px;
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 1.5rem;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+/* Dot on the timeline line */
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -1.75rem;
+  top: 6px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 0 4px var(--color-accent-dim);
+}
+
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.timeline-title {
+  font-size: 1.1rem;
+  color: var(--color-text);
+}
+
+.timeline-period {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  white-space: nowrap;
+}
+
+.timeline-subtitle {
+  color: var(--color-text);
+  font-weight: 500;
+  margin-top: 0.25rem;
+}
+
+.timeline-grade {
+  color: var(--color-accent);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 0.25rem;
+}
+
+.timeline-text {
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin-top: 0.5rem;
+}

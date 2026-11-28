@@ -111,3 +111,17 @@
 .navbar-brand {
   letter-spacing: 0.02em;
 }
+
+
+/* Nav pills: visible cyan border on the light background */
+.navbar-links a {
+  border: 1px solid rgba(14, 127, 163, 0.28);
+}
+
+.navbar-links a:hover {
+  border-color: var(--color-accent);
+}
+
+.navbar-toggle {
+  border: 1px solid rgba(14, 127, 163, 0.28);
+}

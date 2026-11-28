@@ -43,3 +43,107 @@
   width: auto;
   padding: 0.85rem 1.75rem;
 }
+
+
+/* Hero card: stylish, layered look */
+.hero-card {
+  position: relative;
+  padding: 3rem 2.5rem;
+  overflow: hidden;
+  border-top: 3px solid transparent;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.6)) padding-box,
+    linear-gradient(90deg, #22d3ee, #0e7fa3, #7dd3fc) border-box;
+  box-shadow:
+    0 4px 8px rgba(15, 43, 56, 0.06),
+    0 24px 50px rgba(14, 127, 163, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+/* Soft glow in the top corner of the card */
+.hero-card::before {
+  content: "";
+  position: absolute;
+  top: -120px;
+  right: -120px;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.35), transparent 70%);
+  pointer-events: none;
+}
+
+/* Greeting as a small pill badge */
+.hero-greeting {
+  display: inline-block;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  background: var(--color-accent-dim);
+  border: 1px solid rgba(14, 127, 163, 0.25);
+  color: var(--color-accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-bottom: 1.25rem;
+}
+
+/* Name with a gradient text fill */
+.hero-name {
+  font-size: clamp(2.2rem, 5.5vw, 3.4rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #0f2b38 0%, #0e7fa3 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.75rem;
+}
+
+.hero-role {
+  display: inline-block;
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--color-accent-soft);
+  margin-bottom: 1.25rem;
+}
+
+.hero-summary {
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+}
+
+/* Call to action: larger, with a glow and a lift on hover */
+.hero-cta {
+  position: relative;
+  padding: 1rem 2.25rem;
+  border-radius: 999px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(135deg, #0e7fa3, #22d3ee);
+  box-shadow: 0 10px 24px rgba(14, 127, 163, 0.35);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.hero-cta:hover {
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px rgba(14, 127, 163, 0.45);
+}
+
+@media (max-width: 600px) {
+  .hero-card {
+    padding: 2.25rem 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-cta:hover {
+    transform: none;
+  }
+}
