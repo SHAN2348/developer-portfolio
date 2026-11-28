@@ -280,3 +280,9 @@
   line-height: 1.6;
   margin-top: 0.5rem;
 }
+
+
+/* Keep line breaks in saved text, such as bulleted descriptions */
+.timeline-text {
+  white-space: pre-line;
+}

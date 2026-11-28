@@ -7,12 +7,14 @@ import AboutSection from "../sections/AboutSection";
 import ProjectsSection from "../sections/ProjectsSection";
 import SkillsSection from "../sections/SkillsSection";
 import EducationSection from "../sections/EducationSection";
+import ExperienceSection from "../sections/ExperienceSection";
 import {
   getPublishedSections,
   findSectionByType,
   getProjects,
   getSkills,
   getEducation,
+  getExperience,
 } from "../services/portfolioService";
 
 function PortfolioPage() {
@@ -22,6 +24,7 @@ function PortfolioPage() {
   const [projects, setProjects] = useState([]);
   const [skills, setSkills] = useState([]);
   const [education, setEducation] = useState([]);
+  const [experience, setExperience] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -56,6 +59,12 @@ function PortfolioPage() {
       } catch (error) {
         console.error("Could not load education:", error);
       }
+
+      try {
+        setExperience(await getExperience());
+      } catch (error) {
+        console.error("Could not load experience:", error);
+      }
     }
 
     loadPortfolioData();
@@ -83,6 +92,10 @@ function PortfolioPage() {
 
         <RevealOnScroll>
           <EducationSection education={education} />
+        </RevealOnScroll>
+
+        <RevealOnScroll>
+          <ExperienceSection experiences={experience} />
         </RevealOnScroll>
       </main>
     </div>

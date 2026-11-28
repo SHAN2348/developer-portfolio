@@ -31,3 +31,9 @@ export async function getEducation() {
   const response = await api.get("/education/");
   return response.data.education;
 }
+
+// Fetch all experience records from the public API.
+export async function getExperience() {
+  const response = await api.get("/experience/");
+  return response.data.experiences;
+}
