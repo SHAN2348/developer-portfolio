@@ -30,6 +30,7 @@ async def update_contact_info(
     admin_id: str = Depends(get_current_admin)
 ):
     update_data = contact_data.model_dump(
+        mode="json",
         exclude_unset=True
     )
 
